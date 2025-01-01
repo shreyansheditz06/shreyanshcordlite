@@ -474,7 +474,7 @@ async def rcvd(ctx):
 shreyansh.load_extension("afk")
 
 token = tokennn.TOKEN
-raj.run(token, bot=False)
+shreyansh.run(token, bot=False)
 
 
 
