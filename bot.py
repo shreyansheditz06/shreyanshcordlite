@@ -167,6 +167,37 @@ async def i2c(ctx, amount: str):
     await ctx.reply(f"`-` **AMOUNT IS** : `${inr_amount:.2f}`")
     print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({green}+{gray}) {pretty}{Fore.GREEN}I2C DONE ✅ ")
 
+@shreyansh.command()
+async def generate_qr(ctx, amount: float, *, note: str = ""):
+    """Generates a UPI QR code with the specified amount and note."""
+    payee_address = "shreyanshgupta2@fam"  # Replace with your UPI ID
+    payee_name = "Shreyansh Gupta"  # Replace with your name
+    merchant_code = ""  # Optional
+    transaction_id = ""  # Optional
+    currency = "INR"  # Currency code
+    url = ""  # Optional
+
+    # Construct the UPI URL
+    upi_url = f"upi://pay?pa={payee_address}&pn={payee_name}&mc={merchant_code}&tid={transaction_id}&tn={note}&am={amount}&cu={currency}&url={url}"
+
+    # Generate QR code
+    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+    qr.add_data(upi_url)
+    qr.make(fit=True)
+
+    # Create an image from the QR Code instance
+    img = qr.make_image(fill='black', back_color='white')
+
+    # Save the image
+    file_name = f"upi_qr_{amount}.png"
+    img.save(file_name)
+
+    # Send the QR code image in the Discord channel
+    await ctx.send(file=discord.File(file_name))
+
+    # Optionally, delete the file after sending
+    os.remove(file_name)
+
 @shreyansh.command
 @commands.cooldown(1, 3, commands.BucketType.user)
 async def c2i(ctx, amount: str):
