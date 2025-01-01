@@ -168,7 +168,7 @@ async def i2c(ctx, amount: str):
     print(f"{reset}[ {cyan}{time_rn}{reset} ] {gray}({green}+{gray}) {pretty}{Fore.GREEN}I2C DONE ✅ ")
 
 @shreyansh.command()
-async def generate_qr(ctx, amount: float, *, note: str = ""):
+async def qra(ctx, amount: float, *, note: str = ""):
     """Generates a UPI QR code with the specified amount and note."""
     payee_address = "shreyanshgupta2@fam"  # Replace with your UPI ID
     payee_name = "Shreyansh Gupta"  # Replace with your name
