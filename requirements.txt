@@ -1,0 +1,8 @@
+discord.py
+aiohttp
+requests
+colorama
+flask
+beautifulsoup4
+pystyle
+openai
